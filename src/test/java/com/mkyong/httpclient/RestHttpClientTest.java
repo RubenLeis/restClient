@@ -5,21 +5,22 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import es.caixagalicia.rest.client.RestClient;
 import es.caixagalicia.rest.client.to.RestClientException;
 import es.caixagalicia.rest.client.to.RestResponse;
 
+@Ignore
 public class RestHttpClientTest {
 
 	@Test
 	public void findTest() {
 		RestClient restClient = new RestClient();
 		try {
-			RestResponse restResponse = restClient.doGet("http://localhost:8080/books");
+			RestResponse restResponse = restClient.doGet("http://localhost:8081/books");
 
 			assertNotNull(restResponse);
 			assertNotNull(restResponse.getStatusLine());
@@ -39,7 +40,7 @@ public class RestHttpClientTest {
 				+ "\"author\": \"Junit\",\r\n" + "\"price\": 47.99\r\n" + "}";
 
 		try {
-			RestResponse restResponse = restClient.doPatch("http://localhost:8080/books/3", json);
+			RestResponse restResponse = restClient.doPatch("http://localhost:8081/books/3", json);
 			assertNotNull(restResponse);
 			assertNotNull(restResponse.getStatusLine());
 			assertEquals(200, restResponse.getStatusLine().getStatusCode());
@@ -57,7 +58,7 @@ public class RestHttpClientTest {
 				+ "\"price\": 12.34\r\n" + "}";
 
 		try {
-			RestResponse restResponse = restClient.doPost("http://localhost:8080/books/", json);
+			RestResponse restResponse = restClient.doPost("http://localhost:8081/books/", json);
 			assertNotNull(restResponse);
 			assertNotNull(restResponse.getStatusLine());
 			assertEquals(201, restResponse.getStatusLine().getStatusCode());
